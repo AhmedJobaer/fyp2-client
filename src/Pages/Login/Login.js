@@ -3,8 +3,15 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+
+
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
+
+    const handelLogin = data => {
+        console.log(data)
+    }
+
     return (
         <div>
             <div className="hero shadow-xl mx-auto mt-12 mb-12 shadow-primary bg-base-200">
@@ -14,7 +21,7 @@ const Login = () => {
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
                     <div className='lg:w-[400px] lg:mr-12'>
-                        <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+                        <form onSubmit={handleSubmit(handelLogin)}>
 
 
                             <div className="form-control w-full max-w-xs">
@@ -29,6 +36,8 @@ const Login = () => {
                             <input className='btn w-full text-white btn-primary' value="Login" type="submit" />
                         </form>
                         <p>New to <span className='text-green-500'>PIES</span>? <Link className='text-primary' to="/register"> Create a new Account</Link></p>
+                        <div className="divider">OR</div>
+                        <button className='w-full btn btn-outline'>CONTINUE WITH GOOGLE</button>
                     </div>
                 </div>
             </div>
