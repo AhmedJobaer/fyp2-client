@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
@@ -8,11 +8,24 @@ const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn } = useContext(AuthContext);
-    //const [data, setData] = useState("");
+    const [loginError, setLoginError] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
     const handelLogin = data => {
         console.log(data);
+        setLoginError('');
         signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message);
+            });
     }
 
     return (
@@ -45,6 +58,9 @@ const Login = () => {
                                 <label className="label"><span className="label-text">Forget Password?</span></label>
                             </div>
                             <input className='btn w-full text-white btn-primary' value="Login" type="submit" />
+                            <div>
+                                {loginError && <p className='text-red-500'>{loginError}</p>}
+                            </div>
                         </form>
                         <p>New to <span className='text-green-500'>PIES</span>? <Link className='text-primary' to="/register"> Create a new Account</Link></p>
                         <div className="divider">OR</div>

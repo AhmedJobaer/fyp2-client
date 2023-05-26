@@ -1,5 +1,6 @@
 import React from 'react';
 import BookCards from './BookCards';
+import { useForm } from 'react-hook-form';
 
 const Book = () => {
 
@@ -62,6 +63,11 @@ const Book = () => {
         },
     ]
 
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const handelNeed = data => {
+        console.log(data);
+    }
+
     return (
         <div>
             <div>
@@ -84,24 +90,25 @@ const Book = () => {
                                 <h1 className="text-5xl font-bold">Tell us your desire book!!</h1>
                                 <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                             </div>
-                            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                                <div className="card-body">
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Book Name</span>
-                                        </label>
-                                        <input type="text" placeholder="Book Name" className="input input-bordered" />
+                            <div className='lg:w-[400px] lg:mr-12'>
+                                <form onSubmit={handleSubmit(handelNeed)}>
+                                    <div className="form-control w-full max-w-xs">
+                                        <label className="label"><span className="label-text">Name</span></label>
+                                        <input type="text" {...register("name", {
+                                            required: "Name is required"
+                                        })} className="input input-bordered w-full max-w-xs" />
+                                        {errors.name && <p className='text-red-500'>{errors.name?.message}</p>}
                                     </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Writer Name</span>
-                                        </label>
-                                        <input type="text" placeholder="Writer Name" className="input input-bordered" />
+                                    <div className="form-control w-full max-w-xs">
+                                        <label className="label"><span className="label-text">Writer Name</span></label>
+                                        <input type="text" {...register("wName", {
+                                            required: "Writer Name is required"
+                                        })} className="input input-bordered w-full max-w-xs" />
+                                        {errors.wName && <p className='text-red-500'>{errors.wName?.message}</p>}
                                     </div>
-                                    <div className="form-control mt-6">
-                                        <button className="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
+
+                                    <input className='btn mt-4 w-full text-white btn-primary' value="Submit" type="submit" />
+                                </form>
                             </div>
                         </div>
                     </div>

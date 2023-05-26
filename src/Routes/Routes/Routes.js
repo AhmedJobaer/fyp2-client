@@ -6,6 +6,8 @@ import Book from "../../Pages/Categories/Book/Book";
 import Tools from "../../Pages/Categories/Tools/Tools";
 import Health from "../../Pages/Categories/Health/Health";
 import Register from "../../Pages/Register/Register";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -37,5 +39,9 @@ export const router = createBrowserRouter([
                 element: <Health></Health>
             },
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
     }
 ])
