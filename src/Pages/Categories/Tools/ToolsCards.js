@@ -10,8 +10,9 @@ const ToolsCards = ({ card }) => {
                     <div className="card-body">
                         <h2 className="card-title ">{itemName}</h2>
                         <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
+                        <div className="card-actions ml-4 ">
+                            <button className="btn btn-primary text-white">See Details</button>
+                            <button className="btn btn-primary text-white">Book Now</button>
                         </div>
                     </div>
                 </div>

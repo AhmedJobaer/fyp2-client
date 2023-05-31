@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BookCards = ({ card }) => {
-    const { itemName, img, description } = card;
+
+    const { id, itemName, img, description } = card;
+
     return (
         <div>
             <div className="card card-compact w-72 bg-base-100 shadow-xl shadow-primary mb-10 ">
@@ -10,7 +13,7 @@ const BookCards = ({ card }) => {
                     <h2 className="card-title ">{itemName}</h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <button className="btn btn-primary text-white"><Link to='/card-details'>See Details</Link></button>
                     </div>
                 </div>
             </div>

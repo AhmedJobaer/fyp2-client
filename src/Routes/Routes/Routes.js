@@ -8,6 +8,10 @@ import Health from "../../Pages/Categories/Health/Health";
 import Register from "../../Pages/Register/Register";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import MyAppointment from "../../Pages/Dashboard/MyAppointment/MyAppointment";
+import CardDetails from "../../Pages/Categories/Book/CardDetails";
+import Lent from "../../Pages/Dashboard/LentItem/Lent";
 
 export const router = createBrowserRouter([
     {
@@ -38,10 +42,30 @@ export const router = createBrowserRouter([
                 path: '/categories-health',
                 element: <Health></Health>
             },
+            {
+                path: '/card-details',
+                element: <CardDetails></CardDetails>
+            },
+
         ]
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>,
+                children: [
+                    {
+                        path: '/dashboard/lent',
+                        element: <Lent></Lent>
+                    },
+                ]
+            },
+
+
+
+        ]
     }
 ])

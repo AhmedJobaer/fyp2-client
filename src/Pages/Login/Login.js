@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import login from '../../assets/images/Lion2.svg';
 
 const Login = () => {
 
@@ -30,13 +31,15 @@ const Login = () => {
 
     return (
         <div>
-            <div className="hero shadow-xl mx-auto mt-12 mb-12 shadow-primary bg-base-200">
+            <h1 className="text-5xl font-lobster text-primary text-center mt-20 mb-2 font-bold">Login now!</h1>
+            <div className="hero shadow-xl mx-auto mt-12 mb-12 shadow-primary ">
+
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+
+                        <img className='w-[500px]' src={login} alt="" />
                     </div>
-                    <div className='lg:w-[400px] lg:mr-12'>
+                    <div className='lg:w-[400px] lg:mr-12 border-8 border-solid border- p-6 border-primary'>
                         <form onSubmit={handleSubmit(handelLogin)}>
 
 

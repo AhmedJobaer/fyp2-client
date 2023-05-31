@@ -66,7 +66,7 @@ const Tools = () => {
         <div>
             <div>
                 <h1 className='text-center text-bold text-2xl mt-12 mb-4'>Available BOOK to Borrow</h1>
-                <input type="text" placeholder="Search Your Need Item" className="input input-bordered mx-auto text-center input-primary w-1/2" />
+                <input type="text" placeholder="Search Your Need Item" className="input input-bordered ml-[400px] mx-auto text-center input-primary w-1/2" />
 
                 <div className='grid mt-10 md:grid-cols-3 lg:grid-cols-4'>
                     {
@@ -76,7 +76,7 @@ const Tools = () => {
                     }
                 </div>
                 <div>
-                    <h1 className='text-center text-bold text-2xl mt-12 mb-4'>Tell us your desire book!!</h1>
+                    <h1 className='text-center text-bold text-4xl mt-12 mb-4'>Tell us your desire  Tools!!</h1>
                     <div className="hero mb-12 bg-base-200">
                         <div className="hero-content flex-col lg:flex-row-reverse">
                             <div className="text-center lg:text-left">
@@ -89,13 +89,32 @@ const Tools = () => {
                                         <label className="label">
                                             <span className="label-text">Name</span>
                                         </label>
-                                        <input type="text" placeholder="Book Name" className="input input-bordered" />
+                                        <input type="text" placeholder="Enter Product Name" className="input input-bordered" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Description</span>
+                                            <span className="label-text">Enter Description</span>
                                         </label>
                                         <input type="text" placeholder="Description" className="input input-bordered" />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Categories</span>
+                                        </label>
+                                        <select className="select select-primary w-full max-w-xs">
+                                            <option disabled selected>Book</option>
+                                            <option>Tools</option>
+                                            <option>Home Applieance</option>
+                                            <option>Health</option>
+                                            <option>Kitchen</option>
+                                            <option>Electronic</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">GDR</span>
+                                        </label>
+                                        <input type="text" placeholder="Enter Good Deeds Points" className="input input-bordered" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
@@ -104,7 +123,7 @@ const Tools = () => {
                                         <input type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
                                     </div>
                                     <div className="form-control mt-6">
-                                        <button className="btn btn-primary">Submit</button>
+                                        <button className="btn btn-primary text-white">Submit</button>
                                     </div>
                                 </div>
                             </div>

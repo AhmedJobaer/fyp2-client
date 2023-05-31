@@ -65,8 +65,10 @@ const Borrow = () => {
 
     return (
         <div>
-            <h1 className='text-center text-bold text-2xl mt-12 mb-4'>Available to Borrow</h1>
-            <input type="text" placeholder="Search Your Need Item" className="input input-bordered mx-auto text-center input-primary w-1/2" />
+            <h1 className='text-center text-bold text-4xl mt-12 mb-6 font-lobster'>Available to Borrow</h1>
+            <div className=' flex justify-center'>
+                <input type="text" placeholder="Search Your Need Item" className="input input-bordered rounded-3xl mx-auto text-center input-primary w-1/2" />
+            </div>
 
             <div className='grid mt-10 md:grid-cols-3 lg:grid-cols-4'>
                 {
