@@ -12,6 +12,11 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import MyAppointment from "../../Pages/Dashboard/MyAppointment/MyAppointment";
 import CardDetails from "../../Pages/Categories/Book/CardDetails";
 import Lent from "../../Pages/Dashboard/LentItem/Lent";
+import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
+import SharedProduct from "../../Pages/Dashboard/SharedProduct/SharedProduct";
+import RequestProduct from "../../Pages/Dashboard/RequestedProduct/RequestProduct";
+import ReviewProduct from "../../Pages/Dashboard/ReviewProduct/ReviewProduct";
+import AskProduct from "../../Pages/Dashboard/AskProduct/AskProduct";
 
 export const router = createBrowserRouter([
     {
@@ -60,6 +65,26 @@ export const router = createBrowserRouter([
                     {
                         path: '/dashboard/lent',
                         element: <Lent></Lent>
+                    },
+                    {
+                        path: '/dashboard/addProduct',
+                        element: <AddProduct></AddProduct>
+                    },
+                    {
+                        path: '/dashboard/askProduct',
+                        element: <AskProduct></AskProduct>
+                    },
+                    {
+                        path: '/dashboard/sharedProduct',
+                        element: <SharedProduct></SharedProduct>
+                    },
+                    {
+                        path: '/dashboard/requestedProduct',
+                        element: <RequestProduct></RequestProduct>
+                    },
+                    {
+                        path: '/dashboard/reviewProduct',
+                        element: <ReviewProduct></ReviewProduct>
                     },
                 ]
             },
