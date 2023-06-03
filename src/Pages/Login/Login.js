@@ -50,7 +50,7 @@ const Login = () => {
             })
     }
 
-
+    //const [gdr, setGdr] = useState(0)
 
 
     const saveUser = (email, password) => {
@@ -67,7 +67,11 @@ const Login = () => {
             .then(data => {
                 console.log("save user", data);
                 const accessToken = data.accessToken;
+                const gdrPoint = data.gdr;
+                // const gdr = data.gdr;
+                // setGdr(gdr);
                 localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('gdrPoint', gdrPoint);
                 //setToken(data.accessToken);
                 //setCreatedUserEmail(email);
             })

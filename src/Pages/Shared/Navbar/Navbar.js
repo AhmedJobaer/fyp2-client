@@ -6,6 +6,7 @@ import gem from '../../../assets/icons/gem.png'
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const gdrPoint = localStorage.getItem('gdrPoint');
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -21,9 +22,21 @@ const Navbar = () => {
 
     </React.Fragment>
 
-    const b = 'book';
-    const e = 'electronic';
+    // const b = 'book';
+    // const e = 'electronic';
 
+
+    const e = user?.email;
+    console.log(e);
+
+    const [gdr, setGdr] = useState(null)
+
+
+
+
+    //console.log(gdr[0].gdr);
+
+    //const gdrp = gdr[0]?.gdr;
 
 
     const [categories, setCategories] = useState([]);
@@ -34,7 +47,7 @@ const Navbar = () => {
             .then(data => setCategories(data))
     }, [])
 
-    console.log(categories);
+    //console.log(categories);
 
 
     return (
@@ -44,7 +57,7 @@ const Navbar = () => {
                 <h2 className='text-3xl ml-14 text-green-500 font-bold'>PIES</h2>
                 <div className=' flex items-center  justify-center w-[140px] p-2 rounded-3xl bg-white mr-10 shadow-xl shadow-primary       '>
                     <img className=' h-[35px] mr-3 ' src="https://cdn-icons-png.flaticon.com/512/3530/3530860.png" alt="" />
-                    <p className='text-2xl  font-bold text-green-500'>250</p>
+                    <p className='text-2xl  font-bold text-green-500'>{user?.email ? gdrPoint : 0}</p>
                 </div>
             </div>
             <div className="navbar font-serif bg-lime-700 rounded  lg:text-white justify-around">
@@ -87,7 +100,7 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end text-black">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://cdn-icons-png.flaticon.com/512/4086/4086679.png" />
+                            <img src="https://cdn-icons-png.flaticon.com/512/4086/4086679.png" alt='' />
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">

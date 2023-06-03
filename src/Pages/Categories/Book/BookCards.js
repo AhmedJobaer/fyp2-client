@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const BookCards = ({ itm }) => {
 
-    const { id, itemName, itemImg, gdr, owner, description } = itm;
+    const { _id, itemName, itemImg, gdr, owner, description } = itm;
+    console.log(_id);
 
     return (
         <div className="card card-compact w-72 bg-base-100 shadow-md shadow-primary mb-10 ">
@@ -30,7 +31,7 @@ const BookCards = ({ itm }) => {
                 </div>
                 <div className="card-actions justify-center">
                     <button className="btn font-serif btn-sm btn-primary text-white"><Link to='/card-details'>Book NoW</Link></button>
-                    <button className="btn font-serif  btn-sm btn-primary text-white"><Link to='/card-details'>See Detail</Link></button>
+                    <button className="btn font-serif  btn-sm btn-primary text-white"><Link to={`/card-details/${_id}`}>See Detail</Link></button>
                 </div>
             </div>
         </div>
