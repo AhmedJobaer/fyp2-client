@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import gem from '../../../assets/icons/gem.png'
@@ -21,6 +21,22 @@ const Navbar = () => {
 
     </React.Fragment>
 
+    const b = 'book';
+    const e = 'electronic';
+
+
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/itemTypes')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [])
+
+    console.log(categories);
+
+
     return (
         <div>
 
@@ -31,7 +47,7 @@ const Navbar = () => {
                     <p className='text-2xl  font-bold text-green-500'>250</p>
                 </div>
             </div>
-            <div className="navbar font-serif bg-lime-700 rounded text-white justify-around">
+            <div className="navbar font-serif bg-lime-700 rounded  lg:text-white justify-around">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,12 +63,18 @@ const Navbar = () => {
                             <label tabIndex={0}>All Categories</label>
                         </div>
                         <ul tabIndex={1} className="dropdown-content shadow-xl shadow-primary text-primary menu p-2  bg-base-100 rounded-box w-52">
-                            <li><Link to="/categories-book">BOOK</Link></li>
+                            {/* <li><Link to={`/categories-book/${b}`}>BOOK</Link></li>
                             <li><Link to="/categories-tools">TOOLS</Link></li>
                             <li><Link to="/categories-health">HEALTH</Link></li>
                             <li><Link to="/">KITCHEN</Link></li>
-                            <li><Link to="/">ELECTRONIC</Link></li>
-                            <li><Link to="/">HOME APPLIANCE</Link></li>
+                            <li><Link to={`/categories-book/${b}`}>ELECTRONIC</Link></li>
+                            <li><Link to="/">HOME APPLIANCE</Link></li> */}
+                            {
+                                categories.map(categorie =>
+                                    <li><Link to={`/categories-book/${categorie}`}>{categorie}</Link></li>
+                                )
+                            }
+
                         </ul>
                     </div>
                 </div>

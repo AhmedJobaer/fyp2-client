@@ -1,7 +1,12 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
-const CardDetails = ({ card }) => {
+const CardDetails = () => {
 
+    const item = useLoaderData();
+    console.log(item);
+
+    const { owner } = item;
 
     return (
         <div>
@@ -9,8 +14,9 @@ const CardDetails = ({ card }) => {
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className=" flex-shrink-0 w-1/2 text-bold ">
                         <div className='text-1xl '>
-                            <h2>Name: Introduction to Computer Science</h2>
+                            <h2>Name: {item?.itemName}</h2>
                             <h2>Location: Mahallah Zubiar</h2>
+                            <h2>GDR: {item?.gdr}</h2>
                         </div>
                         <div className="card-actions">
                             <button className="btn btn-primary  text-white mt-4">Book Now</button>
@@ -24,7 +30,7 @@ const CardDetails = ({ card }) => {
                                 </div>
                             </div>
                             <div>
-                                <h2>Asif Ahmed</h2>
+                                <h2>{owner?.name}</h2>
                                 <div className="rating">
                                     <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
                                     <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" checked />
@@ -37,7 +43,7 @@ const CardDetails = ({ card }) => {
                     </div>
                     <div className="divider lg:divider-horizontal">OR</div>
                     <div className="mr-15"  >
-                        <img src='https://realtoughcandy.com/wp-content/uploads/2021/03/introduction-to-computer-science-books-cover.jpg' alt=''></img>
+                        <img src={item?.itemImg} alt=''></img>
                     </div>
 
                 </div>

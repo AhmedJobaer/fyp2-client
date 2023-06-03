@@ -8,13 +8,16 @@ const Login = () => {
 
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, signInWithGoogle } = useContext(AuthContext);
+
     const [loginError, setLoginError] = useState("");
+    //const [token, setToken] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
     const handelLogin = data => {
+        //const name = 'cccccccccc';
         console.log(data);
         setLoginError('');
         signIn(data.email, data.password)
@@ -22,12 +25,56 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 navigate(from, { replace: true });
+                console.log(user.email);
+                saveUser(user.email, data.password);
+
+
             })
             .catch(error => {
                 console.log(error.message)
                 setLoginError(error.message);
             });
     }
+
+    const handelGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                console.log(user);
+
+            })
+            .catch(error => {
+                setLoginError(error.message);
+                console.error(error)
+            })
+    }
+
+
+
+
+    const saveUser = (email, password) => {
+        const user = { email, password };
+        console.log(user);
+        fetch('http://localhost:5000/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("save user", data);
+                const accessToken = data.accessToken;
+                localStorage.setItem('accessToken', accessToken);
+                //setToken(data.accessToken);
+                //setCreatedUserEmail(email);
+            })
+    }
+
+
+
 
     return (
         <div>
@@ -67,7 +114,7 @@ const Login = () => {
                         </form>
                         <p>New to <span className='text-green-500'>PIES</span>? <Link className='text-primary' to="/register"> Create a new Account</Link></p>
                         <div className="divider">OR</div>
-                        <button className='w-full btn btn-outline'>CONTINUE WITH GOOGLE</button>
+                        <button onClick={handelGoogleSignIn} className='w-full btn btn-outline'>CONTINUE WITH GOOGLE</button>
                     </div>
                 </div>
             </div>

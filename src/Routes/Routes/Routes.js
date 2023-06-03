@@ -36,9 +36,12 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/categories-book',
+                path: '/categories-book/:itemType',
+                loader: ({ params }) => fetch(`http://localhost:5000/api/type/${params.itemType}`),
                 element: <Book></Book>
             },
+
+            //http://localhost:5000/api/item/filter?itemType=book&availability=true
             {
                 path: '/categories-tools',
                 element: <Tools></Tools>
@@ -48,7 +51,8 @@ export const router = createBrowserRouter([
                 element: <Health></Health>
             },
             {
-                path: '/card-details',
+                path: '/card-details/:_id',
+                loader: ({ params }) => fetch(`http://localhost:5000/api/items/${params._id}`),
                 element: <CardDetails></CardDetails>
             },
 
