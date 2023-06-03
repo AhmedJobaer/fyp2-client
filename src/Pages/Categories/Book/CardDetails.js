@@ -1,10 +1,35 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 const CardDetails = () => {
 
     const item = useLoaderData();
-    console.log(item);
+    const accessToken = localStorage.getItem('accessToken');
+
+    console.log(item._id);
+
+
+    const borrowProduct = (_id, itemName, itemImg, description, owner, ownerName) => {
+        // console.log("fghdfjghdfj", itemName + description + itemImg + " " + owner.name);
+        const item = { _id, itemName, itemImg, description, owner, ownerName };
+        console.log(item);
+        fetch(`http://localhost:5000/api/borrowrequest/${item._id}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'token': 'Bearer ' + accessToken
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("borrP", data);
+                toast('You have Successfully place a request for borrowed the product.')
+                //setCreatedUserEmail(email);
+            })
+    }
+
 
     const { owner } = item;
 
@@ -16,10 +41,10 @@ const CardDetails = () => {
                         <div className='text-1xl '>
                             <h2>Name: {item?.itemName}</h2>
                             <h2>Location: Mahallah Zubiar</h2>
-                            <h2>GDR: {item?.gdr}</h2>
+                            <h2 className='font-serif text-green-500'>GDR: {item?.gdr}</h2>
                         </div>
                         <div className="card-actions">
-                            <button className="btn btn-primary  text-white mt-4">Book Now</button>
+                            <button onClick={() => borrowProduct(item._id, item.itemName, item.itemImg, item.description, item.owner, item.owner.name)} className="btn btn-primary  text-white mt-4">Book Now</button>
                             <button className="btn btn-primary  text-white mt-4">Contact Owner</button>
                         </div>
                         <div className="divider"></div>
