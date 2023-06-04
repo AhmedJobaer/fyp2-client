@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BorrowCard from './BorrowCard';
+import { AuthContext } from '../../../context/AuthProvider';
 //import clock from '../../../assets/icons/clock.svg'
 
 const Borrow = () => {
     ;
 
-
+    const { updateUser, user } = useContext(AuthContext);
 
     const [items, setItems] = useState([]);
 
@@ -15,7 +16,11 @@ const Borrow = () => {
             .then(data => setItems(data))
     }, [])
 
-    //console.log(items[10].owner.name);
+    console.log(items);
+    const e = user?.email
+
+    const sortedData = items.filter((item) => item.owner.email !== e);
+    console.log("sort    ", sortedData);
 
     return (
         <div>
@@ -26,7 +31,7 @@ const Borrow = () => {
 
             <div className='grid place-items-center mt-10 md:grid-cols-3 lg:grid-cols-4'>
                 {
-                    items.map(item => <BorrowCard key={item._id}
+                    sortedData.map(item => <BorrowCard key={item._id}
                         item={item}></BorrowCard>)
                 }
             </div>

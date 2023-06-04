@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BookCards from './BookCards';
 import { useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const Book = () => {
 
-
+    const { user, logOut } = useContext(AuthContext);
     const itms = useLoaderData();
     console.log(itms[0].itemType);
 
+    const e = user?.email;
+    console.log(e);
+    console.log(itms);
 
-
-
+    const sortedData = itms.filter((item) => item.owner.email !== e);
+    //console.log("sort    ", sortedData);
 
     return (
         <div>
@@ -23,7 +27,7 @@ const Book = () => {
 
                 <div className='grid  place-items-center mt-10 md:grid-cols-3 lg:grid-cols-4'>
                     {
-                        itms.map(itm => <BookCards
+                        sortedData.map(itm => <BookCards
                             key={itm._id}
                             itm={itm}
                         ></BookCards>)

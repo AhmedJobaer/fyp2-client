@@ -1,7 +1,34 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 
 const ReqTable = ({ row }) => {
-    console.log(row);
+
+
+
+
+    const accessToken = localStorage.getItem('accessToken');
+    const id = row._id;
+    console.log(id);
+
+    const canProduct = () => {
+        // console.log("fghdfjghdfj", itemName + description + itemImg + " " + owner.name);
+        const citem = {};
+        console.log(citem);
+        fetch(`http://localhost:5000/api/makeavailabe/${id}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'token': 'Bearer ' + accessToken
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("borrP", data);
+                toast('You have Successfully cancel your request for the product.')
+                //setCreatedUserEmail(email);
+            })
+    }
     return (
         <div>
             <div className=" mt-1 shadow-md">
@@ -36,7 +63,7 @@ const ReqTable = ({ row }) => {
                             </td>
                             <th>
                                 <div className="badge pb-3 pt-2 badge-primary badge-outline">...pending</div>
-                                <button className="btn border-none ml-2 text-white bg-red-500 btn-xs">cancel</button>
+                                <button onClick={() => canProduct()} className="btn border-none ml-2 text-white bg-red-500 btn-xs">cancel</button>
                             </th>
                         </tr>
 

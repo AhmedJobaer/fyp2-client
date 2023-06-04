@@ -1,8 +1,27 @@
 import React from 'react';
 
 const Footer = () => {
+
+
+    const data = [
+        { name: "John", points: 150 },
+        { name: "Jane", points: 250 },
+        { name: "Alice", points: 100 },
+        { name: "Bob", points: 300 },
+        { name: "Eve", points: 200 }
+    ];
+
+    const sortedData = data.sort((a, b) => b.points - a.points);
+
+    // Get the top three players
+    const topThree = sortedData.slice(0, 3);
+
     return (
+
+
+
         <div>
+
             <footer className="footer p-10 bg-primary text-white ">
                 <div>
                     <span className="footer-title">Services</span>

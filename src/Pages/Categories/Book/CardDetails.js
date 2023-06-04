@@ -51,7 +51,7 @@ const CardDetails = () => {
                         <div className='flex'>
                             <div className="avatar mr-4">
                                 <div className="w-14 rounded-full">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/4086/4086679.png" alt='' />
+                                    <img className='bg-lime-200' src="https://cdn-icons-png.flaticon.com/512/2648/2648307.png" alt='' />
                                 </div>
                             </div>
                             <div>

@@ -19,6 +19,7 @@ const Navbar = () => {
 
         <li><Link to="/">About</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/leaderBoard">Leader Board</Link></li>
 
     </React.Fragment>
 
@@ -26,8 +27,7 @@ const Navbar = () => {
     // const e = 'electronic';
 
 
-    const e = user?.email;
-    console.log(e);
+
 
     const [gdr, setGdr] = useState(null)
 
@@ -48,16 +48,24 @@ const Navbar = () => {
     }, [])
 
     //console.log(categories);
+    const e = user?.email;
+    //console.log(e);
+    //console.log(categories);
 
+    // const sortedData = categories.filter((item) => item.owner.email !== e);
+    // console.log("sort    ", sortedData);
 
     return (
         <div>
 
             <div className='flex items-center mb-2 justify-between'>
                 <h2 className='text-3xl ml-14 text-green-500 font-bold'>PIES</h2>
-                <div className=' flex items-center  justify-center w-[140px] p-2 rounded-3xl bg-white mr-10 shadow-xl shadow-primary       '>
-                    <img className=' h-[35px] mr-3 ' src="https://cdn-icons-png.flaticon.com/512/3530/3530860.png" alt="" />
-                    <p className='text-2xl  font-bold text-green-500'>{user?.email ? gdrPoint : 0}</p>
+                <div className='flex items-center'>
+                    <button><Link to='/payment'><img className=' h-[45px] w-[40px] bg-white rounded-xl mr-3 ' src="https://w7.pngwing.com/pngs/718/239/png-transparent-credit-card-payment-computer-icons-mastercard-bank-pay-text-trademark-rectangle.png" alt="" /></Link></button>
+                    <div className=' flex items-center  justify-center w-[140px] p-2 rounded-3xl bg-white mr-10 shadow-xl shadow-primary       '>
+                        <img className=' h-[35px] mr-3 ' src="https://cdn-icons-png.flaticon.com/512/3530/3530860.png" alt="" />
+                        <p className='text-2xl  font-bold text-green-500'>{user?.email ? gdrPoint : 0}</p>
+                    </div>
                 </div>
             </div>
             <div className="navbar font-serif bg-lime-700 rounded  lg:text-white justify-around">

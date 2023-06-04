@@ -17,6 +17,10 @@ import SharedProduct from "../../Pages/Dashboard/SharedProduct/SharedProduct";
 import RequestProduct from "../../Pages/Dashboard/RequestedProduct/RequestProduct";
 import ReviewProduct from "../../Pages/Dashboard/ReviewProduct/ReviewProduct";
 import AskProduct from "../../Pages/Dashboard/AskProduct/AskProduct";
+import LeaderBoard from "../../Pages/LeaderBoard/LeaderBoard";
+import Payment from "../../Pages/Payment/Payment";
+import Success from "../../Pages/Payment/Success";
+import Pay from "../../Pages/Payment/Pay";
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +40,10 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/leaderBoard',
+                element: <LeaderBoard></LeaderBoard>
+            },
+            {
                 path: '/categories-book/:itemType',
                 loader: ({ params }) => fetch(`http://localhost:5000/api/type/${params.itemType}`),
                 element: <Book></Book>
@@ -43,12 +51,12 @@ export const router = createBrowserRouter([
 
             //http://localhost:5000/api/item/filter?itemType=book&availability=true
             {
-                path: '/categories-tools',
-                element: <Tools></Tools>
+                path: '/success',
+                element: <Success></Success>
             },
             {
-                path: '/categories-health',
-                element: <Health></Health>
+                path: '/pay',
+                element: <Pay></Pay>
             },
             {
                 path: '/card-details/:_id',
@@ -95,6 +103,12 @@ export const router = createBrowserRouter([
 
 
 
+
+
         ]
+    },
+    {
+        path: '/payment',
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>
     }
 ])
