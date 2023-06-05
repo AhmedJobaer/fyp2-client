@@ -2,12 +2,35 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import addP from '../../../assets/images/addPro.svg'
+import { toast } from 'react-hot-toast';
 const AskProduct = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
 
+
+    const accessToken = localStorage.getItem('accessToken');
+    const { register, reset, formState: { errors }, handleSubmit } = useForm();
     const handelLogin = data => {
         console.log(data);
+        askProduct(data.itemName, data.description, data.itemType, data.itemImg);
+        reset();
+    }
 
+
+    const askProduct = (itemName, description, itemType, itemImg) => {
+        const item = { itemName, description, itemType, itemImg };
+        fetch('http://localhost:5000/api/askeditem/', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'token': 'Bearer ' + accessToken
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("askP", data);
+                toast('You have Successfully added the product.');
+                //setCreatedUserEmail(email);
+            })
     }
 
     return (
@@ -26,10 +49,10 @@ const AskProduct = () => {
                             <form onSubmit={handleSubmit(handelLogin)}>
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label"><span className="label-text">Name</span></label>
-                                    <input type="text" {...register("name", {
+                                    <input type="text" {...register("itemName", {
                                         required: "Name is required"
                                     })} className="input input-bordered w-full max-w-xs" />
-                                    {errors.name && <p className='text-red-500'>{errors.name?.message}</p>}
+                                    {errors.itemName && <p className='text-red-500'>{errors.itemName?.message}</p>}
                                 </div>
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label"><span className="label-text">Description</span></label>
@@ -42,27 +65,27 @@ const AskProduct = () => {
                                 </div>
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label"><span className="label-text">Categories</span></label>
-                                    <select type="text" {...register("categories", {
+                                    <select type="text" {...register("itemType", {
                                         required: "Description is required"
 
                                     })} className="select select-primary w-full max-w-xs">
-                                        <option disabled selected>Book</option>
-                                        <option>Tools</option>
-                                        <option>Home Applieance</option>
-                                        <option>Health</option>
-                                        <option>Kitchen</option>
-                                        <option>Electronic</option>
+                                        <option value='book' selected>Book</option>
+                                        <option value='tools'>Tools</option>
+                                        <option value='homeAppliances'>Home Applieance</option>
+                                        <option value='health'>Health</option>
+                                        <option value='kitchen'>Kitchen</option>
+                                        <option value='electronic'>Electronic</option>
                                     </select>
-                                    {errors.categories && <p className='text-red-500'>{errors.categories?.message}</p>}
+                                    {errors.itemType && <p className='text-red-500'>{errors.itemType?.message}</p>}
                                 </div>
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label"><span className="label-text">Sample Image Link</span></label>
-                                    <input type="text" {...register("gdr", {
+                                    <input type="text" {...register("itemImg", {
                                         required: "Link is required",
-                                        minLength: { value: 2, message: "GDR must be 2 digits" },
+                                        minLength: { value: 2, message: "itemImg must be 2 digits" },
                                     })}
                                         className="input input-bordered w-full max-w-xs" />
-                                    {errors.gdr && <p className='text-red-500'>{errors.gdr?.message}</p>}
+                                    {errors.itemImg && <p className='text-red-500'>{errors.itemImg?.message}</p>}
                                 </div>
                                 <input className='btn w-[320px] text-white btn-primary mt-6' value="Submit" type="submit" />
 

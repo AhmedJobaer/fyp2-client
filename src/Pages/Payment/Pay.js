@@ -13,21 +13,21 @@ const Pay = () => {
         setStripeToken(token);
     }
 
-    useEffect(() => {
-        const makeRequest = async () => {
-            try {
-                const res = await axios.post('http://localhost:5000/api/checkout/payment',
-                    {
-                        tokenId: stripeToken.id,
-                        amount: 1000,
-                    });
-                console.log(res.data);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        stripeToken && makeRequest()
-    }, [stripeToken])
+    // useEffect(() => {
+    //     const makeRequest = async () => {
+    //         try {
+    //             const res = await axios.post('http://localhost:5000/api/checkout/payment',
+    //                 {
+    //                     tokenId: stripeToken.id,
+    //                     amount: 1000,
+    //                 });
+    //             console.log(res.data);
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     }
+    //     stripeToken && makeRequest()
+    // }, [stripeToken])
 
     return (
         <div>

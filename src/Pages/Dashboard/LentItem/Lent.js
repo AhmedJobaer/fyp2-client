@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import ReqTable from '../RequestedProduct/ReqTable';
 import BTable from './BTable';
 
+import noitem from '../../../assets/images/noItem.svg'
+
 const Lent = () => {
 
 
@@ -37,41 +39,87 @@ const Lent = () => {
             });
     }
 
-    //console.log(requested);
+    console.log(requested.length);
 
 
     return (
         <div>
-            {/* <div className="tabs font-semibold bg-lime-100 rounded-2xl  justify-around p-4 mb-14 mr-6">
+
+            {requested[0]?._id ?
+                <>
+                    <div>
+                        {/* <div className="tabs font-semibold bg-lime-100 rounded-2xl  justify-around p-4 mb-14 mr-6">
                 <Link to="/dashboard/lent" className="tab tab-lg rounded-3xl shadow-sm shadow-primary text-2xl font-serif  text-black hover:text-white  hover:bg-primary  focus:outline-none focus:ring focus:ring-primary  "> Borrowed </Link>
                 <Link to='/dashboard/sharedProduct' className="tab font-serif text-2xl tab-lg rounded-3xl shadow-sm shadow-primary text-black  hover:bg-primary hover:text-white focus:outline-none focus:ring focus:ring-primary  "> Shared </Link>
                 <Link className="tab  font-serif tab-lg text-2xl rounded-3xl shadow-sm shadow-primary text-black  hover:bg-primary hover:text-white  focus:outline-none focus:ring focus:ring-primary  ">Requested</Link>
                 <Link className="tab font-serif tab-lg rounded-3xl shadow-sm text-2xl shadow-primary text-black  hover:bg-primary hover:text-white  focus:outline-none focus:ring focus:ring-primary  ">Review Request</Link>
                 </div> */}
-            <p className='text-5xl text-center  font-lobster font-bold  mt-7 mb-14'> Your <span className='text-green-500'>Borrowed</span> Items. </p>
-            <div className='overflow-x-auto'>
-                <table className='table w-full'>
-                    {/* head */}
-                    <thead>
-                        <tr className='font-serif '>
+                        <p className='text-5xl text-center  font-lobster font-bold  mt-7 mb-14'> Your <span className='text-green-500'>Borrowed</span> Items. </p>
+                        <div className='overflow-x-auto'>
+                            <table className='table w-full'>
+                                {/* head */}
+                                <thead>
+                                    <tr className='font-serif '>
 
-                            <th>Owner Name</th>
-                            <th>Item Name</th>
-                            <th >Picture</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            {
-                requested.map(row => <BTable
-                    key={row._id}
-                    row={row}
-                >
+                                        <th>Owner Name</th>
+                                        <th>Item Name</th>
+                                        <th >Picture</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        {
+                            requested.map(row => <BTable
+                                key={row._id}
+                                row={row}
+                            >
 
-                </BTable>)
+                            </BTable>)
+                        }
+                    </div>
+                </>
+
+                :
+                <div className=''>
+                    <h2 className='font-lobster text-6xl text-center font-bold'>Your Bag is <span className='text-green-500'>empty</span>!!</h2>
+                    <img className='w-2/3 mx-auto' src={noitem} alt="" />
+                </div>
             }
+
+
         </div>
+        // <div>
+        //     {/* <div className="tabs font-semibold bg-lime-100 rounded-2xl  justify-around p-4 mb-14 mr-6">
+        //         <Link to="/dashboard/lent" className="tab tab-lg rounded-3xl shadow-sm shadow-primary text-2xl font-serif  text-black hover:text-white  hover:bg-primary  focus:outline-none focus:ring focus:ring-primary  "> Borrowed </Link>
+        //         <Link to='/dashboard/sharedProduct' className="tab font-serif text-2xl tab-lg rounded-3xl shadow-sm shadow-primary text-black  hover:bg-primary hover:text-white focus:outline-none focus:ring focus:ring-primary  "> Shared </Link>
+        //         <Link className="tab  font-serif tab-lg text-2xl rounded-3xl shadow-sm shadow-primary text-black  hover:bg-primary hover:text-white  focus:outline-none focus:ring focus:ring-primary  ">Requested</Link>
+        //         <Link className="tab font-serif tab-lg rounded-3xl shadow-sm text-2xl shadow-primary text-black  hover:bg-primary hover:text-white  focus:outline-none focus:ring focus:ring-primary  ">Review Request</Link>
+        //         </div> */}
+        //     <p className='text-5xl text-center  font-lobster font-bold  mt-7 mb-14'> Your <span className='text-green-500'>Borrowed</span> Items. </p>
+        //     <div className='overflow-x-auto'>
+        //         <table className='table w-full'>
+        //             {/* head */}
+        //             <thead>
+        //                 <tr className='font-serif '>
+
+        //                     <th>Owner Name</th>
+        //                     <th>Item Name</th>
+        //                     <th >Picture</th>
+        //                     <th>Action</th>
+        //                 </tr>
+        //             </thead>
+        //         </table>
+        //     </div>
+        //     {
+        //         requested.map(row => <BTable
+        //             key={row._id}
+        //             row={row}
+        //         >
+
+        //         </BTable>)
+        //     }
+        // </div>
     );
 };
 

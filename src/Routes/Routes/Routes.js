@@ -21,6 +21,7 @@ import LeaderBoard from "../../Pages/LeaderBoard/LeaderBoard";
 import Payment from "../../Pages/Payment/Payment";
 import Success from "../../Pages/Payment/Success";
 import Pay from "../../Pages/Payment/Pay";
+import Err from "../../Pages/ErrorPage/Err";
 
 export const router = createBrowserRouter([
     {
@@ -110,5 +111,9 @@ export const router = createBrowserRouter([
     {
         path: '/payment',
         element: <PrivateRoute><Payment></Payment></PrivateRoute>
+    },
+    {
+        path: '*',
+        element: <Err></Err>
     }
 ])

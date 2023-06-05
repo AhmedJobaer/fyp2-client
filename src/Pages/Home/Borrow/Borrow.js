@@ -4,7 +4,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 //import clock from '../../../assets/icons/clock.svg'
 
 const Borrow = () => {
-    ;
+
 
     const { updateUser, user } = useContext(AuthContext);
 
@@ -24,12 +24,12 @@ const Borrow = () => {
 
     return (
         <div>
-            <h1 className='text-center text-bold text-4xl mt-12 mb-6 font-lobster'>Available to Borrow</h1>
+            <h1 className='text-center font-extrabold text-6xl mt-24 mb-6 font-lobster'>Available Items</h1>
             <div className=' flex justify-center'>
-                <input type="text" placeholder="Search Your Need Item" className="input input-bordered rounded-3xl mx-auto text-center input-primary w-1/2" />
+                <input type="text" placeholder="Search Your Need Item" className="input mb-12 input-bordered rounded-3xl mx-auto text-center input-primary w-1/2" />
             </div>
 
-            <div className='grid place-items-center mt-10 md:grid-cols-3 lg:grid-cols-4'>
+            <div className='grid place-items-center mb-14 mt-10 md:grid-cols-3 lg:grid-cols-4'>
                 {
                     sortedData.map(item => <BorrowCard key={item._id}
                         item={item}></BorrowCard>)

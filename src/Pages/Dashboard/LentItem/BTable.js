@@ -5,25 +5,28 @@ const BTable = ({ row }) => {
 
     const accessToken = localStorage.getItem('accessToken');
     const id = row._id;
-    //console.log(id);
+    console.log(row);
+    console.log(id);
+    console.log(row.itemId);
+    //const itemId = row.itemId
 
-    const canProduct = () => {
-        // console.log("fghdfjghdfj", itemName + description + itemImg + " " + owner.name);
-        const citem = {};
-        console.log(citem);
-        fetch(`http://localhost:5000/api/makeavailabe/${id}`, {
+    const canProduct = (itemId) => {
+
+        const reItem = { itemId };
+        console.log(reItem);
+        fetch(`http://localhost:5000/api/return/${row._id}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'token': 'Bearer ' + accessToken
             },
-            body: JSON.stringify()
+            body: JSON.stringify(reItem)
         })
             .then(res => res.json())
             .then(data => {
-                console.log("borrP", data);
-                toast('You have Successfully return the product.')
-                //setCreatedUserEmail(email);
+                console.log("return", data);
+                toast('You have Successfully return the product.');
+
             })
     }
 
@@ -66,7 +69,7 @@ const BTable = ({ row }) => {
                                 </td>
                                 <th>
 
-                                    <button onClick={() => canProduct()} className="btn border-none ml-2 text-white bg-red-500 btn-xs">return</button>
+                                    <button onClick={() => canProduct(row.itemId)} className="btn border-none ml-2 text-white bg-red-500 btn-xs">return</button>
                                 </th>
                             </tr>
 

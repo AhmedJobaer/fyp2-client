@@ -8,10 +8,10 @@ import { AuthContext } from '../../../context/AuthProvider';
 const AddProduct = () => {
 
 
-    const accessToken = localStorage.getItem('accessToken')
-    console.log(accessToken);
+    const accessToken = localStorage.getItem('accessToken');
+    //console.log(accessToken);
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, reset, formState: { errors }, handleSubmit } = useForm();
     const [token, setToken] = useState([]);
     const { user } = useContext(AuthContext);
     console.log(user.email);
@@ -19,14 +19,8 @@ const AddProduct = () => {
     const handelLogin = data => {
         console.log(data);
         addProduct(data.itemName, data.description, data.itemType, data.gdr, data.itemImg);
-
+        reset();
     }
-
-    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2EwNDY2NjQ5N2NkNTgwMDgzZmVhZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODU3MjE4MTIsImV4cCI6MTY4NTk4MTAxMn0.St741pX_3Kou7M1vKhNS5_4epUqyTz3jCnFV6-6wtjs
-
-    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2EwNDY2NjQ5N2NkNTgwMDgzZmVhZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODU3MzE5OTAsImV4cCI6MTY4NTk5MTE5MH0.wgdHrY_Akcm3fQ-cNO-IS0oB-bC4VGnCnWiTfISlCJI
-
-
 
 
     // useEffect(() => {
@@ -49,7 +43,7 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(data => {
                 console.log("addP", data);
-                toast('You have Successfully added the product.')
+                toast('You have Successfully added the product.');
                 //setCreatedUserEmail(email);
             })
     }

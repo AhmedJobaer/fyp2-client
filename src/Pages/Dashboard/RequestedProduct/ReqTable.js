@@ -12,8 +12,8 @@ const ReqTable = ({ row }) => {
 
     const canProduct = () => {
         // console.log("fghdfjghdfj", itemName + description + itemImg + " " + owner.name);
-        const citem = {};
-        console.log(citem);
+        //const citem = {};
+        //console.log(citem);
         fetch(`http://localhost:5000/api/makeavailabe/${id}`, {
             method: 'POST',
             headers: {
